@@ -3,13 +3,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Card, Link, Container, Typography } from '@mui/material';
 // hooks
-import useResponsive from '../hooks/useResponsive';
+import useResponsive from '../../../hooks/useResponsive';
 // components
-import Page from '../components/Page';
-import Logo from '../components/Logo';
+import Page from '../../../components/Page';
+import Logo from '../../../components/Logo';
 // sections
-import { LoginForm } from '../sections/auth/login';
-/* import AuthSocial from '../sections/auth/AuthSocial'; */
+import LoginForm from './LoginForm';
+import AuthSocial from '../../../sections/auth/AuthSocial';
 
 // ----------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Login1() {
+export default function Login() {
   const smUp = useResponsive('up', 'sm');
 
   const mdUp = useResponsive('up', 'md');
@@ -80,21 +80,21 @@ export default function Login1() {
         {mdUp && (
           <SectionStyle>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Welcome back!
+              Hi, Welcome Back
             </Typography>
-            <img src="/static/illustrations/logIn.png" alt="login" />
+            <img src="/static/illustrations/illustration_login.png" alt="login" />
           </SectionStyle>
         )}
 
         <Container maxWidth="sm">
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              Sign in 
+              Sign in to Minimal
             </Typography>
 
             <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
 
-           {/* <AuthSocial /> */}
+            <AuthSocial />
 
             <LoginForm />
 
@@ -112,3 +112,4 @@ export default function Login1() {
     </Page>
   );
 }
+
