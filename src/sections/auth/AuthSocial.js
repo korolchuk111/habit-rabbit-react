@@ -19,7 +19,7 @@ export default function AuthSocial() {
 
         <Button fullWidth size="large" color="inherit" variant="outlined">
           <Iconify icon="eva:twitter-fill" color="#1C9CEA" width={22} height={22} />
-        </Button>
+  </Button> 
       </Stack>
 
       <Divider sx={{ my: 3 }}>
