@@ -9,12 +9,12 @@ import Page from '../components/Page';
 
 const ContentStyle = styled('div')(({ theme }) => ({
   maxWidth: 480,
-  margin: 'auto',
+  margin: "auto",
   minHeight: '100vh',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
-  padding: theme.spacing(12, 0)
+  padding: theme.spacing(2, 2, 6)
 }));
 
 // ----------------------------------------------------------------------
@@ -24,6 +24,11 @@ export default function Page404() {
     <Page title="404 Page Not Found">
       <Container>
         <ContentStyle sx={{ textAlign: 'center', alignItems: 'center' }}>
+          <Box
+            component="img"
+            src="/static/illustrations/404v.svg"
+            sx={{ width: { xs: 300, sm: 500 }, mx: 'auto', my: { xs: 0, sm: 2 } }}
+          />
           <Typography variant="h3" paragraph>
             Sorry, page not found!
           </Typography>
@@ -33,13 +38,13 @@ export default function Page404() {
             sure to check your spelling.
           </Typography>
 
-          <Box
-            component="img"
-            src="/static/illustrations/404v.svg"
-            sx={{ height: 500, mx: 'auto', my: { xs: 5, sm: 10 } }}
-          />
-
-          <Button to="/" size="large" variant="contained" component={RouterLink}>
+          <Button
+            to="/"
+            size="large"
+            variant="contained"
+            component={RouterLink}
+            sx={{my: 2.5}}
+          >
             Go to Home
           </Button>
         </ContentStyle>

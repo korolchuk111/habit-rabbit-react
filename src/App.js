@@ -17,7 +17,7 @@ import DashboardLayout from "./layouts/dashboard";
 import Login from "./projectComponents/authentication/login";
 import Register from "./pages/Register";
 import Products from "./pages/Products";
-import User from "./pages/User";
+import User from "./pages/Habits";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/Page404";
 import DashboardApp from "./pages/DashboardApp";
@@ -51,7 +51,7 @@ export default function App() {
           />
           <Route
             exact
-            path="/dashboard/user"
+            path="/dashboard/habits"
             element={
               <PrivateRoute>
                 <User />

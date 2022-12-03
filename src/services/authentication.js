@@ -56,6 +56,7 @@ export function login(values, history) {
     .then(
       (response) => {
         store.dispatch(setAccess(response.data));
+        store.dispatch(history.authReducer.isAuthUser)
         history.push("/dashboard/app");
 
         // const {role} = store.getState().authReducer;
