@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  // BrowserRouter as Router,
   Routes,
   Route, Navigate
 } from "react-router-dom";
@@ -15,7 +14,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { BaseOptionChartStyle } from "./components/chart/BaseOptionChart";
 import DashboardLayout from "./layouts/dashboard";
 import Login from "./projectComponents/authentication/login";
-import Register from "./pages/Register";
+import Register from "./projectComponents/authentication/register";
 import Products from "./pages/Products";
 import User from "./pages/Habits";
 import Blog from "./pages/Blog";
@@ -23,7 +22,6 @@ import NotFound from "./pages/Page404";
 import DashboardApp from "./pages/DashboardApp";
 
 // ----------------------------------------------------------------------
-// const history = createBrowserHistory();
 
 export default function App() {
   return (
@@ -105,8 +103,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-// function RequireAuth({ children, redirectTo }) {
-//   const isAuthenticated = getAuth();
-//   return isAuthenticated ? children : <Navigate to={redirectTo} />;
-// }

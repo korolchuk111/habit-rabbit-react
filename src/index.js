@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-// import { Provider } from 'react-redux'
 import { PersistGate } from "redux-persist/integration/react";
 import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
@@ -13,7 +12,6 @@ import { store, persistor } from "./store";
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import reportWebVitals from './reportWebVitals';
 
 // ----------------------------------------------------------------------
 

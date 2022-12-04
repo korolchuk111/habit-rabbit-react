@@ -5,13 +5,11 @@ import authenticationService from "../api/authentication";
 // import { statusCode } from "../constants/statusCodes";
 import { store } from "../store";
 import {setAccess, logout} from "../reduxActions/auth"
-// import { userRoles } from '../constants/userRoles';
 import tokenService from "./tokens"
 
 export function register(values, history) {
   const model = {
-    name: values.name,
-    surname: values.surname,
+    username: values.userName,
     email: values.email,
     password: values.password
   };
@@ -20,10 +18,9 @@ export function register(values, history) {
     .register(model)
     .then(
       (response) => {
-        // successMessage(authenticationMessages.SUCCESSFUL_REGISTRATION);
         store.dispatch(setAccess(response.data));
-        console.log(history.authReducer.isAuthUser)
         history.push("/dashboard/app");
+        window.location.reload()
       },
       () => {
         // err.response.status === statusCode.BAD_REQUEST
@@ -56,25 +53,8 @@ export function login(values, history) {
     .then(
       (response) => {
         store.dispatch(setAccess(response.data));
-        store.dispatch(history.authReducer.isAuthUser)
         history.push("/dashboard/app");
-
-        // const {role} = store.getState().authReducer;
-
-        // switch (role) {
-        //   case userRoles.USER:
-        //     history.push("/main");
-        //     break;
-        //   case userRoles.LOGIST:
-        //     history.push("/users");
-        //     break;
-        //   default:
-        //     errorMessage(
-        //       authenticationMessages.LOGIN_FAILED,
-        //       generalMessages.SOMETHING_WENT_WRONG
-        //     );
-        //     break;
-        // }
+        window. location. reload()
       },
       () => {
         // err.response.status === statusCode.BAD_REQUEST

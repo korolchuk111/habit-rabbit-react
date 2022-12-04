@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 // import { Form, Input, Button } from "antd";
 // import { Link } from "react-router-dom";
 // import { inputValidationErrorMessages } from "../../../constants/messages/inputValidationErrors";
 import { IconButton, InputAdornment, Link, Stack } from "@mui/material";
+import { createBrowserHistory } from "history";
 import { LoadingButton } from "@mui/lab";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
@@ -18,15 +18,14 @@ import { FormProvider, RHFCheckbox, RHFTextField } from "../../../components/hoo
 import Iconify from "../../../components/Iconify";
 
 function LoginForm() {
-  const navigate = useNavigate();
+  const history = createBrowserHistory();
 
   useEffect(() => {
     tokenService.deleteTokens();
   }, []);
 
   const onFinish = (values) => {
-    login(values, navigate('/dashboard/app', { replace: true }));
-    // navigate('/dashboard', { replace: true });
+    login(values, history);
   };
 
   // const onFinishFailed = () => {
@@ -35,7 +34,6 @@ function LoginForm() {
     //   generalMessages.CORRECT_ALL_COMMENTS
     // );
   // };
-  // const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -59,10 +57,6 @@ function LoginForm() {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
-
-  // const onSubmit = async () => {
-  //   navigate('/dashboard', { replace: true });
-  // };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onFinish)}>
