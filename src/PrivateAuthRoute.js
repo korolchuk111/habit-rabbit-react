@@ -1,22 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  Navigate,
   Route,
   useLocation,
   useNavigate,
   useParams
 } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
-const PrivateRoute = props => {
+const history = createBrowserHistory();
+
+const PrivateAuthRoute = props => {
   const { isAuthUser } = props;
 
   if (isAuthUser) {
-    return props.children;
+    return history.back();
   }
 
   if (!isAuthUser) {
-    return <Navigate to={"/login"} />;
+    return props.children;
   }
 
   return <Route {...props} />;
@@ -41,4 +43,4 @@ function withRouter(Component) {
 
   return ComponentWithRouterProp;
 }
-export default withRouter(connect(mapStateToProps)(PrivateRoute));
+export default withRouter(connect(mapStateToProps)(PrivateAuthRoute));

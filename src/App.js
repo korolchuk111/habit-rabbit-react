@@ -20,6 +20,7 @@ import User from "./pages/Habits";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/Page404";
 import DashboardApp from "./pages/DashboardApp";
+import PrivateAuthRoute from "./PrivateAuthRoute";
 
 // ----------------------------------------------------------------------
 
@@ -75,29 +76,25 @@ export default function App() {
             }
           />
         </Route>
-        <Route
-          exact
-          path="/login"
-          element={
-            <Login />
-          }
+        <Route exact path="/login"
+           element=
+             {
+               <PrivateAuthRoute>
+                 <Login />
+               </PrivateAuthRoute>
+             }
         />
-        <Route
-          exact
-          path="/register"
-          element={
-            <Register />
-          }
+        <Route exact path="/register"
+           element=
+             {
+               <PrivateAuthRoute>
+                 <Register />
+               </PrivateAuthRoute>
+             }
         />
-        <Route path="404" element={<NotFound />} />
+        <Route exact path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />
-        <Route
-          exact
-          path="/"
-          element={
-            <Navigate to={"/dashboard/app"}/>
-          }
-          />
+        <Route path="/" element={<Navigate to={"/dashboard/app"}/>} />
         <Route path="/" element={<Login />} />
       </Routes>
     </ThemeProvider>
