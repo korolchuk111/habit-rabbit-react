@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
@@ -9,6 +9,7 @@ import MenuPopover from '../../components/MenuPopover';
 // mocks_
 import account from '../../_mock/account';
 import { logoutUser } from "../../services/authentication";
+import { getUserInfo } from "../../services/users";
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +38,21 @@ export default function AccountPopover() {
   const history = createBrowserHistory();
 
   const [open, setOpen] = useState(null);
+  const [userName, setUserName] = useState();
+  const [userEmail, setUserEmail] = useState();
+
+  useEffect( () => {
+    async function fetchData() {
+      try {
+        const res = await getUserInfo();
+        setUserName(res.userName);
+        setUserEmail(res.email);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData().then();
+  }, []);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -89,10 +105,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {userName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {userEmail}
           </Typography>
         </Box>
 

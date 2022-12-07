@@ -1,5 +1,6 @@
 export const SERVER_URL = "https://localhost:7130/api";
 export const AUTHENTICATION_URL = "/Authentication";
+export const USER_URL = "/User";
 
 export const AUTHENTICATION_URLS = {
   REGISTRATION: `${AUTHENTICATION_URL  }/register`,

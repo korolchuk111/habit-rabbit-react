@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from "react";
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
@@ -14,6 +14,7 @@ import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
 import navConfig from './NavConfig';
+import { getUserInfo } from "../../services/users";
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +46,19 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
+  const [userName, setUserName] = useState();
+
+  useEffect( () => {
+    async function fetchData() {
+      try {
+        const res = await getUserInfo();
+        setUserName(res.userName);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData().then();
+  }, []);
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -70,7 +84,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
+                {userName}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}
