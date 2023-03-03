@@ -81,7 +81,7 @@ export default function Register() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb:0  }}>
               Let's get new habits and get rid of bad ones!
             </Typography>
-            <img alt="register" src="/static/illustrations/register.png" />
+            <img alt="register" src="/static/illustrations/register.svg" />
           </SectionStyle>
         )}
 

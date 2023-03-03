@@ -17,8 +17,4 @@ export default class authenticationService {
   static refreshTokens(model) {
     return instance.post(AUTHENTICATION_URLS.REFRESH_TOKEN, model);
   }
-
-  static confirmEmail(model) {
-    return instance.post(AUTHENTICATION_URLS.CONFIRM_EMAIL, model);
-  }
 }

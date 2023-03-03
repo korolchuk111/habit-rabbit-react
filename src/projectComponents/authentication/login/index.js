@@ -82,7 +82,7 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Welcome back!
             </Typography>
-            <img src="/static/illustrations/logIn.png" alt="login" />
+            <img src="/static/illustrations/login.svg" alt="login" />
           </SectionStyle>
         )}
 

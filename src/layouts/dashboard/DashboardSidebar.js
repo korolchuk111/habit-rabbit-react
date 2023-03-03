@@ -74,7 +74,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
-      <Box sx={{ px: 13, py: 3, display: 'inline-flex' }}>
+      <Box sx={{display: 'inline-flex', justifyContent: "center", py: 3 }}>
         <Logo />
       </Box>
 

@@ -20,7 +20,8 @@ import User from "./pages/Habits";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/Page404";
 import DashboardApp from "./pages/DashboardApp";
-import PrivateAuthRoute from "./PrivateAuthRoute";
+import PrivateAuthRoute from "./privateAuthRoute";
+import Tasks from "./projectComponents/dailyTasks";
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +38,7 @@ export default function App() {
             <PrivateRoute>
               <DashboardLayout />
             </PrivateRoute>
+            // <DashboardLayout />
           }
         >
           <Route
@@ -46,6 +48,17 @@ export default function App() {
               <PrivateRoute>
                 <DashboardApp />
               </PrivateRoute>
+              // <DashboardApp />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard/tasks"
+            element={
+              <PrivateRoute>
+                <Tasks />
+              </PrivateRoute>
+              // <User />
             }
           />
           <Route
@@ -55,6 +68,7 @@ export default function App() {
               <PrivateRoute>
                 <User />
               </PrivateRoute>
+              // <User />
             }
           />
           <Route

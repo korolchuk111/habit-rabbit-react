@@ -1,13 +1,3 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import rootReducer from '../rootReducer'
-//
-// export const store = configureStore({
-//   reducer: rootReducer
-// })
-
-
-
-
 import thunk from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist';
@@ -31,27 +21,3 @@ export const store = configureStore({
 })
 
 export const persistor = persistStore(store);
-
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import storage from 'redux-persist/lib/storage';
-// import { persistReducer, persistStore } from 'redux-persist';
-//
-// import rootReducer from '../rootReducer'
-//
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// }
-//
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
-//
-// export const store = configureStore({
-//   reducer: persistedReducer,
-//   devTools: process.env.NODE_ENV !== 'production',
-//   middleware: [thunk]
-// })
-//
-// export const persistor = persistStore(store)
-//
-
