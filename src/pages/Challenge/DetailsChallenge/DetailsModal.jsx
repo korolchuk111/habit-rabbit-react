@@ -5,11 +5,10 @@ import { Close } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { CirclePicker } from 'react-color';
 import dayjs from 'dayjs';
-// import { MuiDateRangePicker } from './components/MuiDateRangePicker';
-// import FieldsMain from './components/FieldsMain';
 import { useGetChallenge } from '../../../api/challenge/useGetChallenge';
 import { useUpdateChallenge } from '../../../api/challenge/useUpdateChallenge';
 import FieldsMain from './components/FieldsMain';
+import { MuiDateRangePicker } from './components/MuiDateRangePicker';
 
 const style = {
   position: 'absolute',
@@ -92,10 +91,6 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
     setOpenDetails(false);
   };
 
-  const handleChangeColor = (selectedColor) => {
-    setColor(selectedColor.hex);
-  };
-
   const handleChangeStartDate = (selectedStartDate) => {
     // const newStartDate = dayjs(selectedStartDate.$d).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
     const newStartDate = dayjs(selectedStartDate.$d);
@@ -160,8 +155,8 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
                 challenge={challenge}
                 setChallenge={setChallenge}
               />
-            {/* <div>
-                <CirclePicker color={color} onChange={handleChangeColor} />
+            <div>
+                <CirclePicker color={color} />
                 <MuiDateRangePicker
                   handleChangeStartDate={handleChangeStartDate}
                   handleChangeEndDate={handleChangeEndDate}
@@ -169,7 +164,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
                   endDate={endDate}
                   startDateError={startDateError}
                 />
-              </div> */}
+              </div> 
           </div>
           <div style={{ float: 'right' }}>
             <Stack direction="row" spacing={2} marginTop={2}>

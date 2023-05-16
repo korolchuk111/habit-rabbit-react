@@ -54,20 +54,19 @@ export default function App() {
             exact
             path="/dashboard/tasks"
             element={
-              // <PrivateRoute>
-              //   <Tasks />
-              // </PrivateRoute>
-              <Tasks />
+               <PrivateRoute>
+                <Tasks />
+               </PrivateRoute>
+
             }
           />
           <Route
             exact
             path="/dashboard/challenges"
             element={
-              // <PrivateRoute>
-              //   <Tasks />
-              // </PrivateRoute>
-              <Challenges />
+               <PrivateRoute>
+                  <Challenges />
+               </PrivateRoute>
             }
           />
           <Route

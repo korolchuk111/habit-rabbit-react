@@ -4,6 +4,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
+import sc from 'styled-components';
+import { useFormContext } from 'react-hook-form';
 
 const DAYS = [
   {
@@ -72,7 +74,7 @@ const StyledToggle = styled(ToggleButton)(({ theme }) => ({
   fontSize: '0.75rem',
 }));
 
-const ToggleDays = ({ toggleDays, setToggleDays }) => {
+const ToggleDays = ({ toggleDays, setToggleDays, errors, clearErrors, register }) => {
   const handleToggle = (event, value) => {
     const newDays = [...toggleDays];
     DAYS.forEach((day, index) => {
@@ -86,7 +88,7 @@ const ToggleDays = ({ toggleDays, setToggleDays }) => {
       <StyledToggleButtonGroup
         size="small"
         aria-label="Days of the week"
-        value={toggleDays.map((value, index) => value === 1 ? index : null).filter(value => value !== null)}
+        value={toggleDays.map((value, index) => (value === 1 ? index : null)).filter((value) => value !== null)}
         onChange={handleToggle}
       >
         {DAYS.map((day, index) => (
@@ -100,3 +102,9 @@ const ToggleDays = ({ toggleDays, setToggleDays }) => {
 };
 
 export default ToggleDays;
+
+const ErrorMessage = sc.span({
+  color: 'red',
+  fontSize: '0.8rem',
+  display: 'block',
+});

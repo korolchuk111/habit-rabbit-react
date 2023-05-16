@@ -40,16 +40,16 @@ export default function DeleteModal({ openDelete, setOpenDelete, selectedChallen
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Видалити елемент?'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{'Delete this challenge?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Ви дійсно хочете видалити елемент {selectedChallengeId}
+            Do you want to delete this challenge? {selectedChallengeId}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Відмінити</Button>
+          <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleDelete} autoFocus>
-            Видалити
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

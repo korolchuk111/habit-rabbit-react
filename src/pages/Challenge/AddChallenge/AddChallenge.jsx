@@ -67,6 +67,7 @@ export default function AddChallenge({ open, setOpen }) {
   const handleChangeStartDate = (selectedStartDate) => {
     // const newStartDate = dayjs(selectedStartDate.$d).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
     const newStartDate = dayjs(selectedStartDate.$d);
+    
     if (!endDate || newStartDate.isBefore(endDate)) {
       setStartDate(newStartDate);
       setStartDateError(null);
@@ -151,6 +152,8 @@ export default function AddChallenge({ open, setOpen }) {
                   startDate={startDate}
                   endDate={endDate}
                   startDateError={startDateError}
+                  errors={errors}
+                  register={register}
                 />
               </div>
             </div>

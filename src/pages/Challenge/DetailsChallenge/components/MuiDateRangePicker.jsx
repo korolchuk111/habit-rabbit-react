@@ -4,41 +4,34 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
-import styled from 'styled-components';
 
 export const MuiDateRangePicker = ({
   handleChangeStartDate,
   handleChangeEndDate,
   startDate,
   endDate,
-  errors,
   startDateError,
-  register,
 }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateTimePicker']}>
         <div style={{ marginTop: 20, display: 'grid', gap: 10 }}>
           <DateTimePicker
-            onChange={handleChangeStartDate}
+            value={startDate}
             maxDateTime={endDate ? dayjs(endDate) : null}
             error={startDateError}
             label="Start date"
+            disabled
           />
           <DateTimePicker
+            value={endDate}
             onChange={handleChangeEndDate}
             minDateTime={startDate ? dayjs(startDate) : null}
             label="End date"
+            disabled
           />
         </div>
       </DemoContainer>
     </LocalizationProvider>
   );
 };
-
-const ErrorMessage = styled.span({
-  color: 'red',
-  fontSize: '0.8rem',
-  display: 'block',
-});
-

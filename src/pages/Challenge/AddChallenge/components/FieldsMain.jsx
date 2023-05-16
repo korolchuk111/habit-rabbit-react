@@ -34,25 +34,18 @@ export default function FieldsMain({
     },
   });
 
-  // const { getFrequency } = useGetFrequency({
-  //   onSuccess: (data) => {
-  //     setFrequency(data);
-  //   },
-  //   onError: (error) => {
-  //     console.error('Error getting frenquency:', error);
-  //   },
-  // });
+
 
   React.useEffect(() => {
     getUnit();
-    // getFrequency();
+  
   }, []);
 
   const handleChangeUnit = ({ target: { value } }) => {
     setUnitSelected(value);
   };
 
-  // const handleChangeFrequency = ({ target: { value } }) => setFrequencySelected(value);
+ 
 
   const handleChangeVisibility = ({ target: { value } }) => setVisibilitySelected(value);
 
@@ -61,9 +54,9 @@ export default function FieldsMain({
   const handleChangeType = ({ target: { value } }) => setTypeSelected(value);
 
   const handleAddSubtask = () => {
-    // const addFields = [...addSubtask, { title: '', unitId: 1, countOfUnits: '' }];
+
     setAddSubtask([...addSubtask, { title: '', countOfUnits: '', unitId: null }]);
-    // setSubTaskUnitsSelected([...subTaskUnitsSelected, null]);
+
   };
 
   const handleDeleteSubtask = (index) => {
@@ -86,17 +79,6 @@ export default function FieldsMain({
     setAddSubtask(newSubTask);
   };
 
-  // const handleChangeAddSubtask = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...addSubtask];
-  //   if (name === 'unitId') {
-  //     list[index][name] = value;
-  //     setSubTaskUnitsSelected(value);
-  //   } else {
-  //     list[index][name] = value;
-  //   }
-  //   setAddSubtask(list);
-  // };
   console.log(addSubtask, 'data');
   return (
     <DivMain>
@@ -170,34 +152,48 @@ export default function FieldsMain({
           <FormControl sx={{ minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Visibility</InputLabel>
             <Select
-              {...register('visibility')}
+              {...register('visibility', { required: true })}
               labelId="demo-select-small"
               id="demo-select-small"
-              value={visibilitySelected}
+              defaultValue={watch('visibility')}
               label="Visibility"
-              onChange={handleChangeVisibility}
+              onChange={(e) => {
+                handleChangeVisibility(e);
+                clearErrors('visibility');
+              }}
             >
               <MenuItem value={1}>Only me</MenuItem>
               <MenuItem value={2}>Friends</MenuItem>
               <MenuItem value={3}>All users</MenuItem>
             </Select>
+            {errors.visibility && <ErrorMessage>This field is required</ErrorMessage>}{' '}
           </FormControl>
           <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
             <InputLabel id="demo-select-small">Type</InputLabel>
             <Select
-              {...register('type')}
+              {...register('type', { required: true })}
               labelId="demo-select-small"
               id="demo-select-small"
-              value={typeSelected}
+              defaultValue={watch('type')}
               label="Type"
-              onChange={handleChangeType}
+              onChange={(e) => {
+                handleChangeType(e);
+                clearErrors('type');
+              }}
             >
               <MenuItem value={1}>Build a habit</MenuItem>
               <MenuItem value={2}>Quit a habit</MenuItem>
             </Select>
+            {errors.type && <ErrorMessage>This field is required</ErrorMessage>}{' '}
           </FormControl>
         </DivMain>
-        <ToggleDays toggleDays={toggleDays} setToggleDays={setToggleDays} />
+        <ToggleDays
+          toggleDays={toggleDays}
+          setToggleDays={setToggleDays}
+          errors={errors}
+          clearErrors={clearErrors}
+          register={register}
+        />
         <div>
           <Button size="large" onClick={() => handleAddSubtask()} startIcon={<AddCircleIcon sx={{ fontSize: 40 }} />}>
             Add subtask
