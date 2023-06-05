@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Box, Button, Typography, IconButton, Modal, Stack } from '@mui/material';
+import { Box, Button, Typography, IconButton, Modal, Stack, Grid } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
 import { CirclePicker } from 'react-color';
@@ -9,6 +9,8 @@ import { useGetChallenge } from '../../../api/challenge/useGetChallenge';
 import { useUpdateChallenge } from '../../../api/challenge/useUpdateChallenge';
 import FieldsMain from './components/FieldsMain';
 import { MuiDateRangePicker } from './components/MuiDateRangePicker';
+import AppWebsiteTask from './components/AppWebsiteTask';
+import { useGetStatisticsChallenge } from '../../../api/challenge/useGetStatisticsChallenge';
 
 const style = {
   position: 'absolute',
@@ -16,11 +18,13 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
+  height: '80%',
   borderRadius: 2,
   backgroundColor: 'background.paper',
   border: '2px solid #4143E5',
   boxShadow: 24,
   p: 4,
+  overflowY: 'auto',
 };
 
 export default function DetailsModal({ openDetails, setOpenDetails, selectedChallengeId }) {
@@ -29,6 +33,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
   const [challengeDescription, setChallengeDescription] = React.useState('');
   const [challengeCountOfUnits, setChallengeCountOfUnits] = React.useState(null);
   const [unitSelected, setUnitSelected] = React.useState('');
+  const [statisticsChallenge, setStatisticsChallenge] = React.useState([]);
 
   const [color, setColor] = React.useState('');
   const [startDate, setStartDate] = React.useState('');
@@ -45,8 +50,18 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
     },
   });
 
+  const { getStatisticsChallenge } = useGetStatisticsChallenge({
+    onSuccess: (data) => {
+      setStatisticsChallenge(data);
+    },
+    onError: (error) => {
+      console.error('Error getting unit:', error);
+    },
+  });
+
   useEffect(() => {
     getChallenge({ id: +selectedChallengeId });
+    getStatisticsChallenge({ id: +selectedChallengeId });
   }, [selectedChallengeId]);
 
   useEffect(() => {
@@ -142,29 +157,45 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
           </Typography>
           <div style={{ display: 'flex', gap: 20 }}>
             <FieldsMain
-                challengeTitle={challengeTitle}
-                setChallengeTitle={setChallengeTitle}
-                challengeDescription={challengeDescription}
-                setChallengeDescription={setChallengeDescription}
-                challengeCountOfUnits={challengeCountOfUnits}
-                setChallengeCountOfUnits={setChallengeCountOfUnits}
-                unitSelected={unitSelected}
-                setUnitSelected={setUnitSelected}
-                toggleDays={toggleDays}
-                setToggleDays={setToggleDays}
-                challenge={challenge}
-                setChallenge={setChallenge}
-              />
+              challengeTitle={challengeTitle}
+              setChallengeTitle={setChallengeTitle}
+              challengeDescription={challengeDescription}
+              setChallengeDescription={setChallengeDescription}
+              challengeCountOfUnits={challengeCountOfUnits}
+              setChallengeCountOfUnits={setChallengeCountOfUnits}
+              unitSelected={unitSelected}
+              setUnitSelected={setUnitSelected}
+              toggleDays={toggleDays}
+              setToggleDays={setToggleDays}
+              challenge={challenge}
+              setChallenge={setChallenge}
+            />
             <div>
-                <CirclePicker color={color} />
-                <MuiDateRangePicker
-                  handleChangeStartDate={handleChangeStartDate}
-                  handleChangeEndDate={handleChangeEndDate}
-                  startDate={startDate}
-                  endDate={endDate}
-                  startDateError={startDateError}
-                />
-              </div> 
+              <CirclePicker color={color} />
+              <MuiDateRangePicker
+                handleChangeStartDate={handleChangeStartDate}
+                handleChangeEndDate={handleChangeEndDate}
+                startDate={startDate}
+                endDate={endDate}
+                startDateError={startDateError}
+              />
+            </div>
+          </div>
+          <div>
+            <Grid item xs={12} md={6} lg={8}>
+              <AppWebsiteTask
+                chartLabels={statisticsChallenge.map((item) => item.date.substring(0, 10))}
+                chartData={[
+                  {
+                    name: '',
+                    type: 'column',
+                    fill: 'yellow',
+                    // gradientColors: ['yellow'],
+                    data: statisticsChallenge.map((item) => item.percentageDone),
+                  },
+                ]}
+              />
+            </Grid>
           </div>
           <div style={{ float: 'right' }}>
             <Stack direction="row" spacing={2} marginTop={2}>

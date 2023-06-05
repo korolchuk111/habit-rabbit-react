@@ -50,6 +50,7 @@ function Tasks() {
       try {
         const res = await getAllTasksByDate(today);
         setTasks(res);
+        console.log(tasks);
       } catch (err) {
         console.log(err);
       }
@@ -60,7 +61,17 @@ function Tasks() {
   const { addProgressChallenge } = useAddProgress({
     onSuccess: (data) => {
       console.log('Progress added:', data);
-      window.location.reload();
+      setProgressSubTask(false);
+      async function fetchData() {
+        try {
+          const res = await getAllTasksByDate(today);
+          setTasks(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchData().then();
+      // window.location.reload();
     },
     onError: (error) => {
       console.error('Error adding progress:', error);
@@ -70,7 +81,16 @@ function Tasks() {
   const { removeProgressChallenge } = useRemoveProgress({
     onSuccess: (data) => {
       console.log('Progress removed:', data);
-      window.location.reload();
+      async function fetchData() {
+        try {
+          const res = await getAllTasksByDate(today);
+          setTasks(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchData().then();
+      // window.location.reload();
     },
     onError: (error) => {
       console.error('Error removing progress:', error);

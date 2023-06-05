@@ -149,7 +149,7 @@ export default function FieldsMain({
           </FormControl>
         </DivDropdown>
         <DivMain>
-          <FormControl sx={{ minWidth: 120 }} size="small">
+          { <FormControl sx={{ minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Visibility</InputLabel>
             <Select
               {...register('visibility', { required: true })}
@@ -167,7 +167,7 @@ export default function FieldsMain({
               <MenuItem value={3}>All users</MenuItem>
             </Select>
             {errors.visibility && <ErrorMessage>This field is required</ErrorMessage>}{' '}
-          </FormControl>
+          </FormControl> }
           <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
             <InputLabel id="demo-select-small">Type</InputLabel>
             <Select

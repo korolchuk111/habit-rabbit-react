@@ -20,14 +20,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Habit from '../AddChallenge/AddChallenge';
 import Page from '../../../components/Page';
 import { useGetChallenges } from '../../../api/challenge/useGetChallenges';
+import { useGetStatisticsChallenges } from '../../../api/challenge/useGetStatisticsChallenges';
 import LongMenu from './components/LongMenu';
 import CustomizedProgressBars from './components/Progress';
 import DeleteModal from './components/DeleteModal';
 import EditModal from '../EditChallenge/EditModal';
 import Label from '../../../components/Label';
+import AppWebsiteTasks from './components/AppWebsiteTasks';
 
 function Challenges() {
   const [challenges, setChallenges] = useState([]);
+  const [statisticsChallenges, setStatisticsChallenges] = useState([]);
   const [open, setOpen] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -42,8 +45,19 @@ function Challenges() {
       console.error('Error getting unit:', error);
     },
   });
+
+  const { getStatisticsChallenges } = useGetStatisticsChallenges({
+    onSuccess: (data) => {
+      setStatisticsChallenges(data);
+    },
+    onError: (error) => {
+      console.error('Error getting unit:', error);
+    },
+  });
+
   useEffect(() => {
     getChallenges();
+    getStatisticsChallenges();
   }, []);
 
   const handleOpen = () => setOpen(true);
@@ -64,6 +78,20 @@ function Challenges() {
   return (
     <Page title="Challenges">
       <Container maxWidth="xl">
+        <Grid item xs={12} md={6} lg={8}>
+          <AppWebsiteTasks
+            chartLabels={statisticsChallenges.map(item => item.date.substring(0, 10))}
+            chartData={[
+              {
+                name: '',
+                type: 'column',
+                fill: 'solid',
+                data: statisticsChallenges.map(item => item.percentageDone),
+              },
+            ]}
+          />
+        </Grid>
+
         <Box sx={{ width: '90%', ml: '25pt', mt: '45pt' }}>
           {challenges.map((challenge, i) => (
             <Card key={i} sx={{ mt: '15pt', width: '90%' }}>
