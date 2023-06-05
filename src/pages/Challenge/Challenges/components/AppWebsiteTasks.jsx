@@ -48,7 +48,7 @@ export default function AppWebsiteTasks({ chartLabels, chartData, ...other }) {
       <CardHeader />
 
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-        <ReactApexChart type="area" series={chartData} options={chartOptions} height={364} />
+        <ReactApexChart type="area" series={chartData} options={chartOptions} height={248} />
       </Box>
     </Card>
   );

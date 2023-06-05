@@ -190,7 +190,6 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
                     name: '',
                     type: 'column',
                     fill: 'yellow',
-                    // gradientColors: ['yellow'],
                     data: statisticsChallenge.map((item) => item.percentageDone),
                   },
                 ]}
