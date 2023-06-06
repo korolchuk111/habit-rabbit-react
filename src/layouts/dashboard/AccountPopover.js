@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
 // components
-import { createBrowserHistory } from "history";
+import { createBrowserHistory } from 'history';
 import MenuPopover from '../../components/MenuPopover';
 // mocks_
 import account from '../../_mock/account';
-import { logoutUser } from "../../services/authentication";
-import { getUserInfo } from "../../services/users";
+import { logoutUser } from '../../services/authentication';
+import { getUserInfo } from '../../services/users';
 
 // ----------------------------------------------------------------------
 
@@ -40,13 +40,15 @@ export default function AccountPopover() {
   const [open, setOpen] = useState(null);
   const [userName, setUserName] = useState();
   const [userEmail, setUserEmail] = useState();
+  const [userPoints, setUserPoints] = useState();
 
-  useEffect( () => {
+  useEffect(() => {
     async function fetchData() {
       try {
         const res = await getUserInfo();
         setUserName(res.userName);
         setUserEmail(res.email);
+        setUserPoints(res.points);
       } catch (err) {
         console.log(err);
       }
@@ -61,13 +63,18 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
-  
+
   const logOut = () => {
-    logoutUser(history)
+    logoutUser(history);
   };
 
   return (
     <>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ padding: '0px', color: 'black', fontSize: '18px' }}>{userPoints}</div>
+        <img src="/static/mock-images/points/icons8-carrot-48.png" alt="login" />
+      </div>
+
       <IconButton
         ref={anchorRef}
         onClick={handleOpen}
