@@ -17,14 +17,14 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
-  height: '80%',
+  width: 730,
+  height: '90%',
   borderRadius: 2,
   backgroundColor: 'background.paper',
   border: '2px solid #4143E5',
   boxShadow: 24,
   p: 4,
-  overflowY: 'auto',
+  // overflowY: 'auto',
 };
 
 export default function DetailsModal({ openDetails, setOpenDetails, selectedChallengeId }) {
@@ -149,9 +149,9 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
         <Box sx={style}>
-          <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 0, right: 0 }}>
+          {/* <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 0, right: 0 }}>
             <Close />
-          </IconButton>
+          </IconButton> */}
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Details challenge
           </Typography>
@@ -182,7 +182,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
             </div>
           </div>
           <div>
-            <Grid item xs={12} md={6} lg={8}>
+            <Grid item xs={12} md={6} lg={8} marginTop={2}>
               <AppWebsiteTask
                 chartLabels={statisticsChallenge.map((item) => item.date.substring(0, 10))}
                 chartData={[
@@ -202,7 +202,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
                 Close
               </Button>
             </Stack>
-          </div>
+          </div> 
         </Box>
       </Modal>
     </div>

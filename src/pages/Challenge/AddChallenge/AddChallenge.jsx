@@ -97,7 +97,7 @@ export default function AddChallenge({ open, setOpen }) {
       frequency: toggleDays.join(''),
       iconName: selectedIcon,
       challengeTypeId: data.type,
-      visibilityId: data.visibility,
+      visibilityId: 1,
       color,
       startDate: startDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),
       endDate: endDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),

@@ -118,7 +118,6 @@ export default function FieldsMain({
             name="countUnitsChallenge"
             label="Units"
             id="outlined-size-small"
-            placeholder="Units"
             size="small"
             value={challengeCountOfUnits}
             setChallengeCountOfUnits

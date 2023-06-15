@@ -15,11 +15,11 @@ const navConfig = [
     path: '/dashboard/challenges',
     icon: getIcon('eva:grid-outline'),
   },
-  {
-    title: 'progress',
-    path: '/dashboard/app',
-    icon: getIcon('eva:bar-chart-fill'),
-  },
+  // {
+  //   title: 'progress',
+  //   path: '/dashboard/app',
+  //   icon: getIcon('eva:bar-chart-fill'),
+  // },
 ];
 
 export default navConfig;

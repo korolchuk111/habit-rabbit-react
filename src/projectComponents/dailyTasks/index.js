@@ -71,7 +71,7 @@ function Tasks() {
         }
       }
       fetchData().then();
-      // window.location.reload();
+      window.location.reload();
     },
     onError: (error) => {
       console.error('Error adding progress:', error);
@@ -90,7 +90,7 @@ function Tasks() {
         }
       }
       fetchData().then();
-      // window.location.reload();
+      window.location.reload();
     },
     onError: (error) => {
       console.error('Error removing progress:', error);
@@ -154,10 +154,8 @@ function Tasks() {
                                 variant="outlined"
                                 sx={{ justifyContent: 'flex' }}
                                 onClick={() => {
-                                  addProgressChallenge({
-                                    dailyTaskId: task.id,
-                                    countOfUnits: task.countOfUnits,
-                                    progressToAdd: -task.countOfUnitsDone,
+                                  removeProgressChallenge({
+                                    taskId: task.id
                                   });
                                 }}
                               >
@@ -187,10 +185,8 @@ function Tasks() {
                             variant="outlined"
                             sx={{ justifyContent: 'flex' }}
                             onClick={() => {
-                              addProgressChallenge({
-                                dailyTaskId: task.id,
-                                countOfUnits: task.countOfUnits,
-                                progressToAdd: -task.countOfUnitsDone,
+                              removeProgressChallenge({
+                                taskId: task.id
                               });
                             }}
                           >
@@ -222,10 +218,8 @@ function Tasks() {
                             variant="outlined"
                             sx={{ justifyContent: 'flex' }}
                             onClick={() => {
-                              addProgressChallenge({
-                                dailyTaskId: task.id,
-                                countOfUnits: task.countOfUnits,
-                                progressToAdd: -task.countOfUnitsDone,
+                              removeProgressChallenge({
+                                taskId: task.id
                               });
                             }}
                           >
@@ -325,10 +319,8 @@ function Tasks() {
                                               variant="outlined"
                                               sx={{ justifyContent: 'flex' }}
                                               onClick={() => {
-                                                addProgressChallenge({
-                                                  dailyTaskId: sub.id,
-                                                  countOfUnits: sub.countOfUnits,
-                                                  progressToAdd: -sub.countOfUnitsDone,
+                                                removeProgressChallenge({
+                                                  taskId: sub.id
                                                 });
                                               }}
                                             >
@@ -358,10 +350,8 @@ function Tasks() {
                                           variant="outlined"
                                           sx={{ justifyContent: 'flex' }}
                                           onClick={() => {
-                                            addProgressChallenge({
-                                              dailyTaskId: sub.id,
-                                              countOfUnits: sub.countOfUnits,
-                                              progressToAdd: -sub.countOfUnitsDone,
+                                            removeProgressChallenge({
+                                              taskId: sub.id
                                             });
                                           }}
                                         >
@@ -399,10 +389,8 @@ function Tasks() {
                                           variant="outlined"
                                           sx={{ justifyContent: 'flex' }}
                                           onClick={() => {
-                                            addProgressChallenge({
-                                              dailyTaskId: sub.id,
-                                              countOfUnits: sub.countOfUnits,
-                                              progressToAdd: -sub.countOfUnitsDone,
+                                            removeProgressChallenge({
+                                              taskId: sub.id
                                             });
                                           }}
                                         >

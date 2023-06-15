@@ -70,8 +70,8 @@ export default function AccountPopover() {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ padding: '0px', color: 'black', fontSize: '18px' }}>{userPoints}</div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight:'20px'}}>
+        <div style={{ padding: '0px', color: 'black', fontSize: '18px', fontWeight: 'bold' }}>{userPoints}</div>
         <img src="/static/mock-images/points/icons8-carrot-48.png" alt="login" />
       </div>
 

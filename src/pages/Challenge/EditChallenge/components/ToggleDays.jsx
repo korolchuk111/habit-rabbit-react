@@ -52,18 +52,18 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)({
 });
 
 const StyledToggle = styled(ToggleButton)(({ theme }) => ({
-  color: '#42a5f5',
+  color: '#2065d1',
   '&.Mui-selected': {
     color: 'white',
-    background: '#42a5f5',
+    background: '#2065d1',
   },
   '&:hover': {
-    borderColor: '#90caf9',
-    background: '#90caf9',
+    borderColor: '#6f9be1',
+    background: '#6f9be1',
   },
   '&.Mui-selected:hover': {
-    borderColor: '#90caf9',
-    background: '#90caf9',
+    borderColor: '#2065d1',
+    background: '#2065d1',
   },
   minWidth: 32,
   maxWidth: 32,

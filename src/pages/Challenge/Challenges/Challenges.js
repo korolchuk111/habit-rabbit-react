@@ -62,6 +62,12 @@ function Challenges() {
 
   const handleOpen = () => setOpen(true);
 
+  const updateChallenges = () => {
+    // Функція оновлення списку челенджів
+    getChallenges();
+    getStatisticsChallenges();
+  };
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB');
@@ -78,7 +84,8 @@ function Challenges() {
   return (
     <Page title="Challenges">
       <Container maxWidth="xl">
-        <Grid item xs={12} md={6} lg={8}>
+
+      <Box sx={{ width: '90%', ml: '25pt', mt: '45pt' }}>
           <AppWebsiteTasks
             chartLabels={statisticsChallenges.map(item => item.date.substring(0, 10))}
             chartData={[
@@ -90,7 +97,7 @@ function Challenges() {
               },
             ]}
           />
-        </Grid>
+        </Box>
 
         <Box sx={{ width: '90%', ml: '25pt', mt: '45pt' }}>
           {challenges.map((challenge, i) => (
@@ -103,7 +110,7 @@ function Challenges() {
                     </Avatar>
                   </Box>
 
-                  <Box sx={{ minWidth: 100 }}>
+                  <Box sx={{ minWidth: 200 }}>
                     <Typography color="inherit" variant="subtitle2" underline="hover">
                       {challenge.title}
                     </Typography>
@@ -143,7 +150,7 @@ function Challenges() {
                     </Grid>
                   </Grid>
                   {/*  */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', pr:3 }}>
                     <CustomizedProgressBars startDate={challenge.startDate} endDate={challenge.endDate} />
                   </Box>
                   <Box
@@ -157,6 +164,7 @@ function Challenges() {
                       setOpenDetails={setOpenDetails}
                       selectedChallengeId={selectedChallengeId}
                       setSelectedChallengeId={setSelectedChallengeId}
+                      updateChallenges={updateChallenges}
                       id={challenge.id}
                     />
                   </Box>

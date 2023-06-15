@@ -17,7 +17,7 @@ AppWebsiteTasks.propTypes = {
 
 export default function AppWebsiteTasks({ chartLabels, chartData, ...other }) {
   const chartOptions = merge(BaseOptionChart(), {
-    plotOptions: { bar: { columnWidth: '16%' } },
+    plotOptions: { bar: { columnWidth: '20%' } },
     fill: { type: chartData.map((i) => i.fill) },
     labels: chartLabels,
     // xaxis: { type: 'datetime' },
@@ -44,12 +44,14 @@ export default function AppWebsiteTasks({ chartLabels, chartData, ...other }) {
   });
 
   return (
-    <Card {...other}>
-      <CardHeader />
 
-      <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-        <ReactApexChart type="area" series={chartData} options={chartOptions} height={248} />
-      </Box>
-    </Card>
+     <Card {...other} sx={{width: '90%'}}>
+       <CardHeader />
+
+       <Box sx={{ p: 3, pb: 1}} dir="ltr">
+         <ReactApexChart type="area" series={chartData} options={chartOptions} height={248} />
+       </Box>
+     </Card>
+
   );
 }

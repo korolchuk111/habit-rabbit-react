@@ -90,21 +90,21 @@ export default function FieldsMain({
         <p><b>Title: </b> {challengeTitle}</p>
         <p><b>Description: </b>{challengeDescription}</p>
                  <DivDropdown>
-           <TextField
+            <TextField
             name="countUnitsChallenge"
-             label="Units"
+            //  label="Units"
              id="outlined-size-small"
              size="small"
             value={challengeCountOfUnits}
              setChallengeCountOfUnits
              disabled
-           />
+           /> 
           <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
 
              <Select
                             labelId="demo-select-small"
                id="demo-select-small"
-               label="Unit"
+              //  label="Unit"
                value={unitSelected}
                disabled
              >
