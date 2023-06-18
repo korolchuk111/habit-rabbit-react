@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { TextField, InputLabel, MenuItem, FormControl, Select, Button } from '@mui/material';
+import { TextField, InputLabel, MenuItem, FormControl, Select, Button, Avatar } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useGetFrequency } from '../../../../api/frequency/useGetFrequency';
 import { useGetUnit } from '../../../../api/unit/useGetUnit';
@@ -117,7 +117,7 @@ export default function FieldsMain({
            </FormControl>
          </DivDropdown>
          <DivMain>
-           <FormControl sx={{ minWidth: 120 }} size="small">
+           {/* <FormControl sx={{ minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Visibility</InputLabel>
             <Select
               labelId="demo-select-small"
@@ -136,8 +136,8 @@ export default function FieldsMain({
                  </MenuItem>
                ))}
              </Select>
-           </FormControl>
-           <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
+           </FormControl> */}
+           <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 0 }}>
             <InputLabel id="demo-select-small">Type</InputLabel>
             <Select
                labelId="demo-select-small"

@@ -118,7 +118,7 @@ export default function App() {
         />
         <Route exact path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />
-        <Route path="/" element={<Navigate to={'/dashboard/app'} />} />
+        <Route path="/" element={<Navigate to={'/dashboard/tasks'} />} />
         <Route path="/" element={<Login />} />
       </Routes>
     </ThemeProvider>

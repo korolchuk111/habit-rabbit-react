@@ -145,7 +145,7 @@ export default function AddChallenge({ open, setOpen }) {
               />
               <div>
                 <CirclePicker color={color} onChange={handleChangeColor} />
-                <IconRadios selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} />
+                {/* <IconRadios selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} /> */}
                 <MuiDateRangePicker
                   handleChangeStartDate={handleChangeStartDate}
                   handleChangeEndDate={handleChangeEndDate}

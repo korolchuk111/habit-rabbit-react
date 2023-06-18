@@ -41,16 +41,7 @@ const DAYS = [
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)({
   margin: (theme) => theme.spacing(2),
   padding: (theme) => theme.spacing(0, 1),
-  // '&:not(:first-child)': {
-  //   // border: '1px solid',
-  //   // borderColor: '#42a5f5',
-  //   // borderRadius: '50%',
-  // },
-  // '&:first-child': {
-  //   border: '1px solid',
-  //   borderColor: '#42a5f5',
-  //   // borderRadius: '50%',
-  // },
+
 });
 
 const StyledToggle = styled(ToggleButton)(({ theme }) => ({

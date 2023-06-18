@@ -147,7 +147,7 @@ export default function FieldsMain({
           </FormControl>
         </DivDropdown>
         <DivMain>
-          <FormControl sx={{ minWidth: 120 }} size="small">
+          {/* <FormControl sx={{ minWidth: 120 }} size="small">
             <InputLabel id="demo-select-small">Visibility</InputLabel>
             <Select
               {...register('visibility')}
@@ -167,8 +167,8 @@ export default function FieldsMain({
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
-          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
+          </FormControl> */}
+          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 0 }}>
             <InputLabel id="demo-select-small">Type</InputLabel>
             <Select
               {...register('type')}

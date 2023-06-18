@@ -96,7 +96,7 @@ export default function FieldsMain({
           />
           {errors.titleChallenge && <ErrorMessage>{errors.titleChallenge.message}</ErrorMessage>}{' '}
         </div>
-        <TextField
+        <TextField  style={{ marginTop: 10 }}
           {...register('description', {
             required: 'This input is required.',
           })}
@@ -107,7 +107,7 @@ export default function FieldsMain({
           size="small"
         />
         {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}{' '}
-        <DivDropdown>
+        <DivDropdown  style={{ marginTop: 10 }}>
           <div>
             <TextField
               {...register('countUnitsChallenge', {
@@ -125,7 +125,7 @@ export default function FieldsMain({
             />
             {errors.countUnitsChallenge && <ErrorMessage>{errors.countUnitsChallenge.message}</ErrorMessage>}{' '}
           </div>
-          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
+          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 10 }}>
             {/* <InputLabel id="demo-select-small">Age</InputLabel> */}
             <Select
               {...register('unitsChallenge', { required: true })}
@@ -148,27 +148,9 @@ export default function FieldsMain({
             {errors.unitsChallenge && <ErrorMessage>This field is required</ErrorMessage>}{' '}
           </FormControl>
         </DivDropdown>
-        <DivMain>
-          {/* { <FormControl sx={{ minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small">Visibility</InputLabel>
-            <Select
-              {...register('visibility', { required: true })}
-              labelId="demo-select-small"
-              id="demo-select-small"
-              defaultValue={watch('visibility')}
-              label="Visibility"
-              onChange={(e) => {
-                handleChangeVisibility(e);
-                clearErrors('visibility');
-              }}
-            >
-              <MenuItem value={1}>Only me</MenuItem>
-              <MenuItem value={2}>Friends</MenuItem>
-              <MenuItem value={3}>All users</MenuItem>
-            </Select>
-            {errors.visibility && <ErrorMessage>This field is required</ErrorMessage>}{' '}
-          </FormControl> } */}
-          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 20 }}>
+        <DivMain style={{ marginTop: 10, marginBottom: 10 }}>
+         
+          <FormControl sx={{ minWidth: 120 }} size="small" style={{ marginLeft: 0 }}>
             <InputLabel id="demo-select-small">Type</InputLabel>
             <Select
               {...register('type', { required: true })}
@@ -187,7 +169,7 @@ export default function FieldsMain({
             {errors.type && <ErrorMessage>This field is required</ErrorMessage>}{' '}
           </FormControl>
         </DivMain>
-        <ToggleDays
+        <ToggleDays style={{ marginTop: 10 }}
           toggleDays={toggleDays}
           setToggleDays={setToggleDays}
           errors={errors}
@@ -195,7 +177,8 @@ export default function FieldsMain({
           register={register}
         />
         <div>
-          <Button size="large" onClick={() => handleAddSubtask()} startIcon={<AddCircleIcon sx={{ fontSize: 40 }} />}>
+          <Button size="large" style={{ marginTop: 5, marginBottom: 5 }}
+          onClick={() => handleAddSubtask()} startIcon={<AddCircleIcon sx={{ fontSize: 40 }} />}>
             Add subtask
           </Button>
           {addSubtask.map((item, index) => {
@@ -203,14 +186,13 @@ export default function FieldsMain({
               <DivSubTask key={index}>
                 <DivDropdown>
                   <TextField
-                    // {...register(`titleSubtask${index}`)}
+                 
                     label="Title"
                     name="title"
                     id="outlined-size-small"
                     placeholder="Tilte"
                     size="small"
                     onChange={(e) => handleChangeAddSubtask(e, index)}
-                    // value={`Subtask ${index + 1}`}
                   />
                   <TextField
                     // {...register('unitsSubtaskCount')}

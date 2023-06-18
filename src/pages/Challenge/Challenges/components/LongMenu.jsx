@@ -22,7 +22,7 @@ export default function LongMenu({
   id,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [challenge, setChallenge] = React.useState([]);
+
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -39,14 +39,7 @@ export default function LongMenu({
     setSelectedChallengeId(id);
   };
 
-  // const { getChallenge } = useGetChallenge({
-  //   onSuccess: (data) => {
-  //     setChallenge(data);
-  //   },
-  //   onError: (error) => {
-  //     console.error('Error getting challenge:', error);
-  //   },
-  // });
+
   const handleEdit = () => {
     setAnchorEl(null);
     setOpenEdit(true);

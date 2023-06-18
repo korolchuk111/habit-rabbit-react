@@ -30,6 +30,7 @@ export default function DeleteModal({ openDelete, setOpenDelete, selectedChallen
     const challengeId = selectedChallengeId;
     setOpenDelete(false);
     deleteChallenge({ challengeId: selectedChallengeId });
+    window.location.reload();
   };
 
   return (

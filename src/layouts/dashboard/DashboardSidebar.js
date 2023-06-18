@@ -27,6 +27,8 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
+const statuses = ["Beginner Bunny", "Bunny Explorer", "Habit Hero", "Rabbit Guru"]
+
 const AccountStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -47,14 +49,18 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
   const isDesktop = useResponsive('up', 'lg');
   const [userName, setUserName] = useState();
+  const [role, setRole] = useState();
 
   useEffect( () => {
     async function fetchData() {
       try {
         const res = await getUserInfo();
         setUserName(res.userName);
+        setRole(statuses[res.status]);
+        console.log("hello", statuses[res.status]);
       } catch (err) {
         console.log(err);
+        console.log("hello!", userName);
       }
     }
     fetchData().then();
@@ -87,7 +93,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
                 {userName}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+                {role}
               </Typography>
             </Box>
           </AccountStyle>

@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 import AppleIcon from '@mui/icons-material/Apple';
 import { Add } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import Iconify from '../../../components/Iconify';
 import Habit from '../AddChallenge/AddChallenge';
 import Page from '../../../components/Page';
 import { useGetChallenges } from '../../../api/challenge/useGetChallenges';
@@ -58,6 +58,7 @@ function Challenges() {
   useEffect(() => {
     getChallenges();
     getStatisticsChallenges();
+    console.log(statisticsChallenges);
   }, []);
 
   const handleOpen = () => setOpen(true);
@@ -106,7 +107,7 @@ function Challenges() {
                 <Stack direction="row" alignItems="center" alignContent={'center'} spacing={2} sx={{ height: 60 }}>
                   <Box sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }}>
                     <Avatar sx={{ bgcolor: challenge.color }}>
-                      <AppleIcon />
+                    <Iconify icon="mdi:rabbit" sx={{ height: 30, width: 30 }}/>
                     </Avatar>
                   </Box>
 
@@ -169,67 +170,6 @@ function Challenges() {
                     />
                   </Box>
                 </Stack>
-                {/* {challenge.subtasks !== null && challenge.subtasks.length !== 0 ? (
-                  <Stack direction="row" alignItems="center" alignContent={'center'} spacing={2}>
-                    <Accordion sx={{ width: '80%', mb: -1 }}>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        sx={{ width: '70pt' }}
-                      >
-                        <Typography
-                          sx={{
-                            color: 'text.secondary',
-                            fontWeight: 600,
-                            fontSize: '11pt',
-                          }}
-                        >
-                          subtasks
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Card sx={{ ml: '30pt', bgcolor: '#f3f3f3' }}>
-                          <CardContent>
-                            {challenge.subtasks.map((sub, i) => (
-                              <Stack key={i} direction={'row'} alignItems={'center'}>
-                                <Typography
-                                  color="inherit"
-                                  variant="subtitle2"
-                                  underline="hover"
-                                  sx={{ minWidth: 240 }}
-                                >
-                                  {sub.title}
-                                </Typography>
-                                <Grid
-                                  container
-                                  spacing={2}
-                                  direction="row"
-                                  justifyContent="flex-end"
-                                  alignItems="center"
-                                >
-                                  <Grid item md={2} display="flex" justifyContent="center">
-                                    <Typography
-                                      variant="caption"
-                                      sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}
-                                    >
-                                      {sub.countOfUnitsDone}/{sub.countOfUnits}
-                                    </Typography>
-                                  </Grid>
-                                  <Grid item md={3} display="flex" justifyContent="center">
-                                    <Label color={'warning'}>{sub.unitShortName}</Label>
-                                  </Grid>
-                                </Grid>
-                              </Stack>
-                            ))}
-                          </CardContent>
-                        </Card>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Stack>
-                ) : (
-                  <></>
-                )} */}
               </CardContent>
               <DeleteModal
                 openDelete={openDelete}

@@ -24,6 +24,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DoneIcon from '@mui/icons-material/Done';
 import { Add } from '@mui/icons-material';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Iconify from '../../components/Iconify';
 import Page from '../../components/Page';
 import WeekTimeline from './timeline';
 import { getAllTasksByDate } from '../../services/dailyTasks';
@@ -31,6 +32,7 @@ import Label from '../../components/Label';
 import Habit from '../../pages/Challenge/AddChallenge/AddChallenge';
 import { useAddProgress } from '../../api/dailyTask/useAddProgress';
 import { useRemoveProgress } from '../../api/dailyTask/useRemoveProgress';
+
 
 function Tasks() {
   const [today, setToday] = useState(new Date());
@@ -50,7 +52,7 @@ function Tasks() {
       try {
         const res = await getAllTasksByDate(today);
         setTasks(res);
-        console.log(tasks);
+        console.log(res);
       } catch (err) {
         console.log(err);
       }
@@ -59,7 +61,7 @@ function Tasks() {
   }, [today]);
 
   const { addProgressChallenge } = useAddProgress({
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       console.log('Progress added:', data);
       setProgressSubTask(false);
       async function fetchData() {
@@ -70,8 +72,8 @@ function Tasks() {
           console.log(err);
         }
       }
-      fetchData().then();
-      window.location.reload();
+      await fetchData().then();
+      // window.location.reload();
     },
     onError: (error) => {
       console.error('Error adding progress:', error);
@@ -103,9 +105,23 @@ function Tasks() {
     addProgressChallenge({
       dailyTaskId: task.id,
       countOfUnits: task.countOfUnits,
-      progressToAdd: task.countOfUnits - task.countOfUnitsDone,
+      progressToAdd: task.countOfUnits - task.countOfUnitsDone
     });
+    window.location.reload();
   };
+
+  const addProgressClick = (task, amount) => {
+    const fullProgress = task.countOfUnitsDone + amount;
+    addProgressChallenge({
+      dailyTaskId: task.id,
+      countOfUnits: task.countOfUnits,
+      progressToAdd: amount,
+    });
+    if (fullProgress >= task.countOfUnits)
+    {
+      window.location.reload();
+    }
+  }
 
   return (
     <Page title="Tasks">
@@ -121,7 +137,7 @@ function Tasks() {
                 <Stack direction="row" alignItems="center" alignContent={'center'} spacing={2} sx={{ height: 60 }}>
                   <Box sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }}>
                     <Avatar sx={{ bgcolor: task.color }}>
-                      <AppleIcon />
+                    <Iconify icon="mdi:rabbit" sx={{ height: 30, width: 30 }}/>
                     </Avatar>
                   </Box>
 
@@ -141,18 +157,18 @@ function Tasks() {
                         {task.countOfUnitsDone}/{task.countOfUnits}
                       </Typography>
                     </Grid>
-                    <Grid item md={3} display="flex" justifyContent="center">
+                    <Grid item md={4} display="flex" justifyContent="center">
                       <Label color={'warning'}>{task.unitShortName}</Label>
                     </Grid>
                     {task.countOfUnits === 1 && (
-                      <Grid item md={3} display="flex" justifyContent="center">
+                      <Grid item md={4} display="flex" justifyContent="center">
                         {task.countOfUnits === 1 ? (
                           <Grid item md={3} display="flex" justifyContent="center">
                             {task.countOfUnitsDone === 1 ? (
                               <Button
                                 color="error"
                                 variant="outlined"
-                                sx={{ justifyContent: 'flex' }}
+                                sx={{ justifyContent: 'flex', minWidth: '95px', fontSize: '14px' }}
                                 onClick={() => {
                                   removeProgressChallenge({
                                     taskId: task.id
@@ -178,12 +194,12 @@ function Tasks() {
                       </Grid>
                     )}
                     {task.countOfUnits !== 1 && task.countOfUnits <= 5 && (
-                      <Grid item md={3} display="flex" justifyContent="center">
+                      <Grid item md={4} display="flex" justifyContent="center">
                         {task.countOfUnitsDone === task.countOfUnits ? (
                           <Button
                             color="error"
                             variant="outlined"
-                            sx={{ justifyContent: 'flex' }}
+                            sx={{ justifyContent: 'flex', width: '100px', fontSize: '10px' }}
                             onClick={() => {
                               removeProgressChallenge({
                                 taskId: task.id
@@ -196,14 +212,8 @@ function Tasks() {
                           <Button
                             color="secondary"
                             variant="outlined"
-                            sx={{ justifyContent: 'flex', height: '40px', minWidth: '120px', fontSize: '10px' }}
-                            onClick={() => {
-                              addProgressChallenge({
-                                dailyTaskId: task.id,
-                                countOfUnits: task.countOfUnits,
-                                progressToAdd: 1,
-                              });
-                            }}
+                            sx={{ justifyContent: 'flex', height: '40px', minWidth: '90px', fontSize: '10px' }}
+                            onClick={() => addProgressClick(task, 1)}
                           >
                             +ADD PROGRESS
                           </Button>
@@ -211,7 +221,7 @@ function Tasks() {
                       </Grid>
                     )}
                     {task.countOfUnits > 5 && (
-                      <Grid item md={5} display="flex" justifyContent="center">
+                      <Grid item md={4} display="flex" justifyContent="center">
                         {task.countOfUnitsDone === task.countOfUnits || task.countOfUnitsDone > task.countOfUnits ? (
                           <Button
                             color="error"
@@ -228,7 +238,7 @@ function Tasks() {
                         ) : (
                           <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <TextField
-                              label="Units Done"
+                              label="Add"
                               type="number"
                               InputProps={{ inputProps: { min: 1 } }}
                               variant="outlined"
@@ -242,14 +252,8 @@ function Tasks() {
                               color="secondary"
                               variant="outlined"
                               size="small"
-                              sx={{ justifyContent: 'flex', minWidth: '40px' }}
-                              onClick={() => {
-                                addProgressChallenge({
-                                  dailyTaskId: task.id,
-                                  countOfUnits: task.countOfUnits,
-                                  progressToAdd: progress,
-                                });
-                              }}
+                              sx={{ justifyContent: 'flex', minWidth: '40px', height: '40px' }}
+                              onClick={() => addProgressClick(task, progress)}
                             >
                               <DoneIcon fontSize="small" />
                             </Button>
@@ -261,7 +265,7 @@ function Tasks() {
                 </Stack>
                 {task.subtasks !== null && task.subtasks.length !== 0 ? (
                   <Stack direction="row" alignItems="center" alignContent={'center'} spacing={2}>
-                    <Accordion sx={{ width: '80%', mb: -1 }}>
+                    <Accordion sx={{ width: '100%', mb: -1 }}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -310,7 +314,7 @@ function Tasks() {
                                     <Label color={'warning'}>{sub.unitShortName}</Label>
                                   </Grid>
                                   {sub.countOfUnits === 1 && (
-                                    <Grid item md={3} display="flex" justifyContent="center">
+                                    <Grid item md={4} display="flex" justifyContent="center">
                                       {sub.countOfUnits === 1 ? (
                                         <Grid item md={3} display="flex" justifyContent="center">
                                           {sub.countOfUnitsDone === 1 ? (
@@ -381,7 +385,7 @@ function Tasks() {
                                     </Grid>
                                   )}
                                   {sub.countOfUnits > 5 && (
-                                    <Grid item md={5} display="flex" justifyContent="center">
+                                    <Grid item md={3} display="flex" justifyContent="center"> 
                                       {sub.countOfUnitsDone === sub.countOfUnits ||
                                       sub.countOfUnitsDone > sub.countOfUnits ? (
                                         <Button
@@ -399,7 +403,7 @@ function Tasks() {
                                       ) : (
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                           <TextField
-                                            label="Units Done"
+                                            label="Add"
                                             type="number"
                                             InputProps={{ inputProps: { min: 1 } }}
                                             variant="outlined"
@@ -413,7 +417,7 @@ function Tasks() {
                                             color="secondary"
                                             variant="outlined"
                                             size="small"
-                                            sx={{ justifyContent: 'flex', minWidth: '40px' }}
+                                            sx={{ justifyContent: 'flex', minWidth: '40px', height: '40px' }}
                                             onClick={() => {
                                               addProgressChallenge({
                                                 dailyTaskId: sub.id,

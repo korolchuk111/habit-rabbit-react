@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Box, Button, Typography, IconButton, Modal, Stack, Grid } from '@mui/material';
+import { Box, Button, Typography, IconButton, Modal, Stack, Grid, Avatar } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
 import { Close } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
-import { CirclePicker } from 'react-color';
 import dayjs from 'dayjs';
 import { useGetChallenge } from '../../../api/challenge/useGetChallenge';
 import { useUpdateChallenge } from '../../../api/challenge/useUpdateChallenge';
@@ -104,6 +104,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
 
   const handleClose = () => {
     setOpenDetails(false);
+    window.location.reload();
   };
 
   const handleChangeStartDate = (selectedStartDate) => {
@@ -152,9 +153,13 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
           {/* <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 0, right: 0 }}>
             <Close />
           </IconButton> */}
+          <div style={{ display: 'flex', gap: 20 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Details challenge
           </Typography>
+          <CircleIcon style={{ color: challenge.color }}/>
+          </div>
+          
           <div style={{ display: 'flex', gap: 20 }}>
             <FieldsMain
               challengeTitle={challengeTitle}
@@ -171,7 +176,7 @@ export default function DetailsModal({ openDetails, setOpenDetails, selectedChal
               setChallenge={setChallenge}
             />
             <div>
-              <CirclePicker color={color} />
+              {/* <CirclePicker color={color} /> */}
               <MuiDateRangePicker
                 handleChangeStartDate={handleChangeStartDate}
                 handleChangeEndDate={handleChangeEndDate}
